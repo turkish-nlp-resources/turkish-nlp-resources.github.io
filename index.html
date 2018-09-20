@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <script src="js/xml2json.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    function loadFile(filePath) {
+        var result = null;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", filePath, false);
+        xmlhttp.send();
+        if (xmlhttp.status==200) {
+          result = xmlhttp.responseText;
+        }
+        return result;
+      }
+      function parse(){
+        parser = new DOMParser();
+        xmlStr = parser.parseFromString(loadFile("Bibliography.xml"),"text/xml");
+        var jsObj = X2J.parseXml(xmlStr);
+        // var result = jsObj[0].handiworks[0].handiwork[1].title[0].jValue;
+        for(var i = 0; i< jsObj[0].handiworks[0].handiwork.length; i++){
+              var title = jsObj[0].handiworks[0].handiwork[i].title[0].jValue;
+              var authors = jsObj[0].handiworks[0].handiwork[i].authors[0].jValue;
+              var year = jsObj[0].handiworks[0].handiwork[i].year[0].jValue;
+              var journal = jsObj[0].handiworks[0].handiwork[i].journal[0].jValue;
+
+              var list = document.getElementById('list');
+              var listelem = document.createElement('li');
+
+
+              var div1 = document.createElement('div');
+              div1.className = "resume-item d-flex flex-column flex-md-row mb-5";
+
+
+              var div2 = document.createElement('div');
+              div2.className="resume-content mr-auto";
+              div2.style.cssText = "border: dotted #aa6f08; border-radius: 25px 60px; ";
+
+              var h3 = document.createElement('h3');
+              h3.className="mb-0";
+              h3.style.cssText = "margin-left: 15px; padding-top: 15px"
+              h3.appendChild(document.createTextNode(title));
+
+
+              var h3sib = document.createElement('div');
+              h3sib.className = "subheading mb-3";
+              h3sib.style.cssText = "margin-left: 15px;"
+              h3sib.appendChild(document.createTextNode(authors+",("+year+")"));
+
+              var ph3sib = document.createElement('p');
+              ph3sib.style.cssText = "margin-left: 15px; padding-bottom: 15px;"
+              ph3sib.appendChild(document.createTextNode(journal));
+
+              div2.appendChild(h3);
+              div2.appendChild(h3sib);
+              div2.appendChild(ph3sib);
+
+              list.appendChild(listelem.appendChild(div1.appendChild(div2)));
+
+          }
+        }
+
+      window.onload=parse;
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Resume - Start Bootstrap Theme</title>
+    <link rel="icon" type="image/png" href="https://colorlib.com/etc/cf/ContactFrom_v3/images/icons/favicon.ico">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Contact_files/bootstrap.min.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Contact_files/font-awesome.min.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Contact_files/animate.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Contact_files/hamburgers.min.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Contact_files/select2.min.css">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="./Contact_files/util.css">
+    <link rel="stylesheet" type="text/css" href="./Contact_files/main.css">
+
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <link href="css/resume.min.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top" cz-shortcut-listen="true">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">Clarence Taylor</span>
+        <span class="d-none d-lg-block">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.png" alt="">
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#request">Request</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#education">Bibliography</a>
+          </li>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid p-0">
+
+      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+        <div class="my-auto">
+          <h1 class="mb-0">turkish
+            <span class="text-primary">nlp literature</span>
+          </h1>
+          <div class="subheading mb-5">Anadolu Üniversitesi, Teknopark 208 Tepebaşı / Eskişehir / Türkiye · +90 (222) 330-2021 ·
+            <a href="mailto:ozgur@yilmazel.com">ozgur@yilmazel.com</a>
+          </div>
+          <p class="lead mb-5">I am an Assistant Research Professor at School of Information Studies . I have a Ph.D. in Electrical Engineering from Syracuse University.</p>
+        </div>
+      </section>
+
+      <hr class="m-0">
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="request">
+        <div class="my-auto">
+          <div class="bg-contact3">
+            <div class="container-contact3">
+              <div class="wrap-contact3">
+                <form class="contact3-form validate-form" method="get" action="https://www.google.com">
+                  <span class="contact3-form-title">
+                    Request For new
+                  </span>
+                  <div class="wrap-input3 validate-input" data-validate="Title is required">
+                    <input class="input3" type="text" name="title" placeholder="Title">
+                    <span class="focus-input3"></span>
+                  </div>
+
+                  <div class="wrap-input3 validate-input" data-validate="Author(s) is required">
+                    <input class="input3" type="text" name="authors" placeholder="Authors (Split with comma)">
+                    <span class="focus-input3"></span>
+                  </div>
+
+                  <div class="wrap-input3 validate-input" data-validate="Year is required">
+                    <input class="input3" type="text" name="year" placeholder="Year">
+                    <span class="focus-input3"></span>
+                  </div>
+
+                  <div class="wrap-input3 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input3" type="text" name="email" placeholder="Your Email">
+                    <span class="focus-input3"></span>
+                  </div>
+
+                  <div class="wrap-input3 validate-input" data-validate="Journal is required">
+                    <textarea class="input3" name="message" placeholder="Journal"></textarea>
+                    <span class="focus-input3"></span>
+                  </div>
+
+                  <div class="container-contact3-form-btn">
+                    <button class="contact3-form-btn">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+          <div id="dropDownSelect1"></div>
+
+          <script type="text/javascript" async="" src="./Contact_files/analytics.js.download"></script><script src="./Contact_files/jquery-3.2.1.min.js.download"></script>
+          <script src="./Contact_files/popper.js.download"></script>
+          <script src="./Contact_files/bootstrap.min.js.download"></script>
+          <script src="./Contact_files/select2.min.js.download"></script>
+          <script>
+            $(".selection-2").select2({
+              minimumResultsForSearch: 20,
+              dropdownParent: $('#dropDownSelect1')
+            });
+          </script>
+          <script src="./Contact_files/main.js.download"></script>
+
+          <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async="" src="./Contact_files/js"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-23581568-13');
+        </script>
+      </section>
+
+      <hr class="m-0">
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
+        <div class="my-auto">
+          <h2 >Bibliography</h2>
+          <div class="subheading mb-5">Turkish Information Retrieval and Natural Language Processing</div>
+
+          <ol id="list" style="height:495px; overflow:hidden; overflow-y:scroll;">
+          </ol>
+        </div>
+      </section>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="js/resume.min.js"></script>
+
+  </body>
+
+</html>
